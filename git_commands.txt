@@ -1,7 +1,117 @@
-git init
+#How can I check the state of a repository?
+git status
+
+#How can I tell what I have changed?
+git diff filename
+git diff directory
+
+#What's the first step in saving changes?
+git add filename
+
+#How files differ from the last saved revision.
+git diff -r HEAD filename    # The -r flag means "compare to a particular revision", and HEAD is a shortcut meaning "the most recent commit".
+
+#How do I commit changes?
+git commit -m "comment"
+#If you accidentally mistype a commit message, you can change it using the --amend flag.
+git commit --amend - m "new message"
+
+#How can I view a repository's history?
+git log
+git log path    # where path is the path to a specific file or directory
+git log -3 filename     # shows you the last three commits involving filename
+
+#How can I view a specific commit?
+git show
+git show hash
+#What is Git's equivalent of a relative path?
+git show HEAD   #HEAD always refers to the most recent commit. The label HEAD~1 then refers to the commit before it, while HEAD~2 refers to the commit before that, and so on.
+
+#How can I see who changed what in a file?
+git annotate file
+
+#How can I see what changed between two commits?
+git diff ID1..ID2   # where ID1 and ID2 identify the two commits you're interested in, and the connector .. is a pair of dots.
+git diff HEAD~1..HEAD~3     #shows the differences between the state of the repository one commit in the past and its state three commits in the past.
+
+#How do I add new files?
+git add filename    #add the new file to the staging area.
+
+#How do I tell Git to ignore certain files?
+by creating a file in the root directory of your repository called .gitignore and storing a list of wildcard patterns that specify the files you don't want Git to pay attention to.
+For example, if .gitignore contains:
+build
+*.mpl
+then Git will ignore any file or directory called build (and, if it's a directory, anything in it), as well as any file whose name ends in .mpl.
+
+#How can I remove unwanted files?
+git clean -n    #will show you a list of files that are in the repository, but whose history Git is not currently tracking.
+git clean -f    #will delete untracked files
+
+#How can I see how Git is configured?
+git config --list
+--system: settings for every user on this computer.
+--global: settings for every one of your projects.
+--local: settings for one specific project.
+Each level overrides the one above it, so local settings (per-project) take precedence over global settings (per-user), which in turn take precedence over system settings (for all users on the computer).
+
+#How can I change my Git configuration?
+git config --global setting value
+#Using this command, you specify the setting you want to change and the value you want to set. 
+#The settings that identify your name and email address are user.name and user.email, respectively.
 git config user.name "my name"
 git config user.email "my email"
-git config --list --local
+
+#How can I commit changes selectively?
+git add path/to/file
+
+#How can I undo changes to unstaged files?
+git checkout -- filename
+
+#How can I undo changes to staged files?
+git reset HEAD path/to/file
+git checkout -- path/to/file    # undo the changes that you made since the last commit.
+
+#How do I restore an old version of a file?
+git checkout hash path/to/file
+
+#How can I undo all of the changes I have made?
+git reset   #remove all files from the staging area
+git checkout -- .   #to put those files back in their previous state
+
+#How can I see what branches my repository has?
+git branch  #The branch you are currently in will be shown with a * beside its name.
+
+#How can I view the differences between branches?
+git diff branch1..branch2
+
+#How can I switch from one branch to another?
+git checkout branchname
+
+
+#Repository initialization in current folder
+git init
+#if you make a mistake and accidentally stage a file you shouldn't have, you can unstage the additions with:
+git reset HEAD
+
+#How can I create a branch?
+git checkout -b branch-name     # create a branch then switch to that branch.
+
+#How can I merge two branches?
+git merge source destination    #Git incorporates the changes made to the source branch into the destination branch.
+
+#How can I merge two branches with conflicts?
+When there is a conflict during a merge, Git tells you that there's a problem,
+ and running git status after the merge reminds you which files have conflicts that you need to resolve by printing both modified: beside the files' names.
+Inside the file, Git leaves markers that look like this to tell you where the conflicts occurred:
+<<<<<<< destination-branch-name
+...changes from the destination branch...
+=======
+...changes from the source branch...
+>>>>>>> source-branch-name
+In many cases, the destination branch name will be HEAD because you will be merging into the current branch. 
+To resolve the conflict, edit the file to remove the markers and make whatever other changes are needed to reconcile the changes, then commit those changes.
+
 
 git add .
 git add folder/*
@@ -26,6 +136,8 @@ git push -u origin main #pushes your repo from your local device to GitHub.
 git remote add origin https://github.com/Paheychup/trading-algorithm.git
 git branch -M main
 git push -u origin main
+
+
 
 
 #How do I edit my global Git configuration?

@@ -1,3 +1,5 @@
+#2022-08-21 Chupakhin Pavel
+
 #How can I check the state of a repository?
 git status
 
@@ -36,6 +38,8 @@ git diff HEAD~1..HEAD~3     #shows the differences between the state of the repo
 
 #How do I add new files?
 git add filename    #add the new file to the staging area.
+git add .   #add all files and folders
+git add folder/*    #add all files and folders from folder
 
 #How do I tell Git to ignore certain files?
 by creating a file in the root directory of your repository called .gitignore and storing a list of wildcard patterns that specify the files you don't want Git to pay attention to.
@@ -128,12 +132,35 @@ git remote add remote-name URL
 #creates a connection between your local repo and the remote repo on Github.
 git remote rm remote-name   #remove existing one
 
+#How can I pull in changes from a remote repository?
+git pull remote-name branch-name  #remote-name - remote repository defined by command "git remote" , branch-name - current branch defined by command "git branch"
+
+#What happens if I try to pull when I have unsaved changes?
+Just as Git stops you from switching branches when you have unsaved work, it also stops you from pulling in changes from a remote repository when doing so might overwrite things you have done locally. 
+The fix is simple: either commit your local changes or revert them, and then try to pull again.
+
+#How can I push my changes to a remote repository?
+git push remote-name branch-name
+
+#What happens if my push conflicts with someone else's work?
+Overwriting your own work by accident is bad; overwriting someone else's is worse.
+To prevent this happening, Git does not allow you to push changes to a remote repository unless you have merged the contents of the remote repository into your own work.
+#Use git pull to bring your repository up to date.
+git pull remote-name branch-name
+#Now that you have merged the remote repository's state into your local repository, try the push again.
+git push remote-name branch-name
 
 
 
-git add .
-git add folder/*
-git commit -m "message"
+
+
+
+
+
+
+
+
+
 git push -u origin main
 git checkout -b test #create new branch and switch to it
 git branch #show branch

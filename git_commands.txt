@@ -115,6 +115,20 @@ To resolve the conflict, edit the file to remove the markers and make whatever o
 #How can I create a brand new repository?
 git init project-name	# where "project-name" is the name you want the new repository's root directory to have.
 
+#How can I create a copy of an existing repository?
+git clone URL
+git clone pathtolocalrepo
+
+#How can I find out where a cloned repository originated?
+git remote -v
+
+#How can I define remotes?
+git add remote remote-name URL
+git remote rm remote-name   #remove existing one
+
+
+
+
 git add .
 git add folder/*
 git commit -m "message"

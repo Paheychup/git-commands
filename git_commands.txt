@@ -123,7 +123,9 @@ git clone pathtolocalrepo
 git remote -v
 
 #How can I define remotes?
-git add remote remote-name URL
+git remote add remote-name URL 
+#Example:git remote add origin https://github.com/Paheychup/trading-algorithm.git 
+#creates a connection between your local repo and the remote repo on Github.
 git remote rm remote-name   #remove existing one
 
 
